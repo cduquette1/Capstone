@@ -5,36 +5,66 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OneListOutOfAll {
 
-	private static String fileNames[];
+	private static ArrayList<String> fileNames;
+	private static HashMap<Integer, String> words;
+	private static int key;
 
-	public static void main(String args[]) {
+	public OneListOutOfAll() {
 
-		// files to check out
-		fileNames = new String[] { "ArtsEntertainmentWordsStemmed.txt", "BeautyHealthWordsStemmed.txt",
-				"BusinessFinanceWordsStemmed.txt", "FoodDrinkWordsStemmed.txt", "HomeGardenWordsStemmed.txt",
-				"JournalReferenceWordsStemmed.txt", "PeopleMediaWordsStemmed.txt",
-				"RecreationalHobbiesWordsStemmed.txt", "TechnologySocialMediaWordsStemmed.txt",
-				"VehicleTravelTransportationWordsStemmed.txt" };
+		fileNames = new ArrayList<String>(); 
+		fileNames.add("ArtsEntertainmentWordsStemmed.txt");
+		fileNames.add("BeautyHealthWordsStemmed.txt");
+		fileNames.add("BusinessFinanceWordsStemmed.txt");
+		fileNames.add("FoodDrinkWordsStemmed.txt");
+		fileNames.add("HomeGardenWordsStemmed.txt");
+		fileNames.add("JournalReferenceWordsStemmed.txt");
+		fileNames.add("PeopleMediaWordsStemmed.txt");
+		fileNames.add("RecreationalHobbiesWordsStemmed.txt");
+		fileNames.add("TechnologySocialMediaWordsStemmed.txt");
+		fileNames.add("VehicleTravelTransportationWordsStemmed.txt");
 
-		//to store values
-		HashMap<Integer, String> words = new HashMap<>();
-		int key = 0;
-		
+		// hashmap to store values
+		words = new HashMap<>();
+
+		// key will be number, index
+		key = 0;
+
+	}
+
+	public HashMap<Integer, String> getMap() {
+		return words;
+	}
+	
+	public ArrayList<String> getInputFiles() {
+		return fileNames;
+	}
+	
+	public boolean deleteFileInput(String fileName) {
+				return fileNames.remove(fileName);
+	}
+	
+	public void addFileInput(String fileName) {
+		fileNames.add(fileName);
+	}
+	
+	public void Run(String fileOutName) {
+
 		// to go through individual files
-		for (int i = 0; i < fileNames.length; i++) {
+		for (int i = 0; i < fileNames.size(); i++) {
 			try {
 
-				FileInputStream fileIn = new FileInputStream(fileNames[i]);
+				FileInputStream fileIn = new FileInputStream(fileNames.get(i));
 				BufferedReader reader = new BufferedReader(new InputStreamReader(fileIn));
 
 				// go in each file to make new list of all words, reduces
 				// duplicates avoided
 				String line = "";
-				
+
 				while (((line = reader.readLine()) != null)) {
 
 					if (!words.containsValue(line) && !line.equals("")) {
@@ -51,7 +81,7 @@ public class OneListOutOfAll {
 		}
 
 		/// writes all values of hash map words to output file
-		File out = new File("allStemmedWords.txt");
+		File out = new File(fileOutName);
 
 		try {
 
@@ -59,8 +89,7 @@ public class OneListOutOfAll {
 			BufferedWriter writer = new BufferedWriter(fileWriter);
 
 			for (int j = 0; j < words.size(); j++) {
-				String wordStemmed = words.get(j);
-				writer.write(wordStemmed);
+				writer.write(words.get(j));
 				writer.write("\n");
 			}
 
@@ -69,5 +98,11 @@ public class OneListOutOfAll {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void main(String args[]) {
+		
+		OneListOutOfAll oneList = new OneListOutOfAll();
+		oneList.Run("allStemmedWords.txt");
 	}
 }
