@@ -16,6 +16,9 @@ public class OneListOutOfAll {
 
 	public OneListOutOfAll() {
 
+
+		fileNames = new ArrayList<String>(); 
+		
 		// hashmap to store values
 		words = new HashMap<>();
 
@@ -29,7 +32,6 @@ public class OneListOutOfAll {
 	}
 	
 	public void gatherStems() {
-		fileNames = new ArrayList<String>(); 
 		fileNames.add("ArtsEntertainmentWordsStemmed.txt");
 		fileNames.add("BeautyHealthWordsStemmed.txt");
 		fileNames.add("BusinessFinanceWordsStemmed.txt");
@@ -52,7 +54,7 @@ public class OneListOutOfAll {
 		fileNames.add("PeopleMedia.txt");
 		fileNames.add("SportsRecreation.txt");
 		fileNames.add("TechnologySocialMedia.txt");
-		fileNames.add("VehicleTravelTransportation.txt");
+		fileNames.add("VehiclesTravelTransportation.txt");
 		
 	}
 	
