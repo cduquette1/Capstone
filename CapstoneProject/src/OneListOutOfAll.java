@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
-public class TrainerVector {
+public class OneListOutOfAll {
 
 	private static String fileNames[];
 
