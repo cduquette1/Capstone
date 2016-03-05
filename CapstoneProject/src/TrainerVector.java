@@ -1,7 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
@@ -19,37 +20,54 @@ public class TrainerVector {
 				"RecreationalHobbiesWordsStemmed.txt", "TechnologySocialMediaWordsStemmed.txt",
 				"VehicleTravelTransportationWordsStemmed.txt" };
 
-		HashMap<String, Integer> words = new HashMap<>();
-
-
+		//to store values
+		HashMap<Integer, String> words = new HashMap<>();
+		int key = 0;
+		
 		// to go through individual files
 		for (int i = 0; i < fileNames.length; i++) {
 			try {
-				
+
 				FileInputStream fileIn = new FileInputStream(fileNames[i]);
 				BufferedReader reader = new BufferedReader(new InputStreamReader(fileIn));
-				File out = new File("allStemmedWords.txt");
-				FileOutputStream fileOut = new FileOutputStream(out);
 
 				// go in each file to make new list of all words, reduces
-				// duplicates
+				// duplicates avoided
 				String line = "";
-				while ((line = reader.readLine()) != null) {
+				
+				while (((line = reader.readLine()) != null)) {
 
-					int key = 0;
-					if (!words.containsValue(line)) {
-						words.put(line, key);
+					if (!words.containsValue(line) && !line.equals("")) {
+						words.put(key, line);
 						key++;
 					}
 				}
 
 				fileIn.close();
-				fileOut.close();
 
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
 
+		/// writes all values of hash map words to output file
+		File out = new File("allStemmedWords.txt");
+
+		try {
+
+			FileWriter fileWriter = new FileWriter(out);
+			BufferedWriter writer = new BufferedWriter(fileWriter);
+
+			for (int j = 0; j < words.size(); j++) {
+				String wordStemmed = words.get(j);
+				writer.write(wordStemmed);
+				writer.write("\n");
+			}
+
+			writer.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }
