@@ -32,29 +32,29 @@ public class OneListOutOfAll {
 	}
 	
 	public void gatherStems() {
-		fileNames.add("ArtsEntertainmentWordsStemmed.txt");
-		fileNames.add("BeautyHealthWordsStemmed.txt");
-		fileNames.add("BusinessFinanceWordsStemmed.txt");
-		fileNames.add("FoodDrinkWordsStemmed.txt");
-		fileNames.add("HomeGardenWordsStemmed.txt");
-		fileNames.add("JournalReferenceWordsStemmed.txt");
-		fileNames.add("PeopleMediaWordsStemmed.txt");
-		fileNames.add("RecreationalHobbiesWordsStemmed.txt");
-		fileNames.add("TechnologySocialMediaWordsStemmed.txt");
-		fileNames.add("VehicleTravelTransportationWordsStemmed.txt");
+		fileNames.add("Words/ArtsEntertainmentWordsStemmed.txt");
+		fileNames.add("Words/BeautyHealthWordsStemmed.txt");
+		fileNames.add("Words/BusinessFinanceWordsStemmed.txt");
+		fileNames.add("Words/FoodDrinkWordsStemmed.txt");
+		fileNames.add("Words/HomeGardenWordsStemmed.txt");
+		fileNames.add("Words/JournalReferenceWordsStemmed.txt");
+		fileNames.add("Words/PeopleMediaWordsStemmed.txt");
+		fileNames.add("Words/RecreationalHobbiesWordsStemmed.txt");
+		fileNames.add("Words/TechnologySocialMediaWordsStemmed.txt");
+		fileNames.add("Words/VehicleTravelTransportationWordsStemmed.txt");
 	}
 	
 	public void gatherWebsites() {
-		fileNames.add("ArtsEntertainment.txt");
-		fileNames.add("BeautyHealth.txt");
-		fileNames.add("BusinessFinance.txt");
-		fileNames.add("FoodDrink.txt");
-		fileNames.add("HomeGarden.txt");
-		fileNames.add("JournalReference.txt");
-		fileNames.add("PeopleMedia.txt");
-		fileNames.add("SportsRecreation.txt");
-		fileNames.add("TechnologySocialMedia.txt");
-		fileNames.add("VehiclesTravelTransportation.txt");
+		fileNames.add("Websites/ArtsEntertainment.txt");
+		fileNames.add("Websites/BeautyHealth.txt");
+		fileNames.add("Websites/BusinessFinance.txt");
+		fileNames.add("Websites/FoodDrink.txt");
+		fileNames.add("Websites/HomeGarden.txt");
+		fileNames.add("Websites/JournalReference.txt");
+		fileNames.add("Websites/PeopleMedia.txt");
+		fileNames.add("Websites/SportsRecreation.txt");
+		fileNames.add("Websites/TechnologySocialMedia.txt");
+		fileNames.add("Websites/VehiclesTravelTransportation.txt");
 		
 	}
 	
@@ -122,6 +122,6 @@ public class OneListOutOfAll {
 		
 		OneListOutOfAll oneList = new OneListOutOfAll();
 		oneList.gatherWebsites();
-		oneList.Run("allWebsites.txt");
+		oneList.Run("IO/allStemmedWords.txt");
 	}
 }
