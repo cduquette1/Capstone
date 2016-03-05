@@ -16,6 +16,19 @@ public class OneListOutOfAll {
 
 	public OneListOutOfAll() {
 
+		// hashmap to store values
+		words = new HashMap<>();
+
+		// key will be number, index
+		key = 0;
+
+	}
+
+	public HashMap<Integer, String> getMap() {
+		return words;
+	}
+	
+	public void gatherStems() {
 		fileNames = new ArrayList<String>(); 
 		fileNames.add("ArtsEntertainmentWordsStemmed.txt");
 		fileNames.add("BeautyHealthWordsStemmed.txt");
@@ -27,17 +40,20 @@ public class OneListOutOfAll {
 		fileNames.add("RecreationalHobbiesWordsStemmed.txt");
 		fileNames.add("TechnologySocialMediaWordsStemmed.txt");
 		fileNames.add("VehicleTravelTransportationWordsStemmed.txt");
-
-		// hashmap to store values
-		words = new HashMap<>();
-
-		// key will be number, index
-		key = 0;
-
 	}
-
-	public HashMap<Integer, String> getMap() {
-		return words;
+	
+	public void gatherWebsites() {
+		fileNames.add("ArtsEntertainment.txt");
+		fileNames.add("BeautyHealth.txt");
+		fileNames.add("BusinessFinance.txt");
+		fileNames.add("FoodDrink.txt");
+		fileNames.add("HomeGarden.txt");
+		fileNames.add("JournalReference.txt");
+		fileNames.add("PeopleMedia.txt");
+		fileNames.add("SportsRecreation.txt");
+		fileNames.add("TechnologySocialMedia.txt");
+		fileNames.add("VehicleTravelTransportation.txt");
+		
 	}
 	
 	public ArrayList<String> getInputFiles() {
@@ -103,6 +119,7 @@ public class OneListOutOfAll {
 	public static void main(String args[]) {
 		
 		OneListOutOfAll oneList = new OneListOutOfAll();
-		oneList.Run("allStemmedWords.txt");
+		oneList.gatherWebsites();
+		oneList.Run("allWebsites.txt");
 	}
 }
