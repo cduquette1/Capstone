@@ -31,16 +31,16 @@ public class CombineList {
 	}
 
 	public void gatherStems() {
-		fileNames.add("Words/ArtsEntertainmentWordsStemmed.txt");
-		fileNames.add("Words/BeautyHealthWordsStemmed.txt");
-		fileNames.add("Words/BusinessFinanceWordsStemmed.txt");
-		fileNames.add("Words/FoodDrinkWordsStemmed.txt");
-		fileNames.add("Words/HomeGardenWordsStemmed.txt");
-		fileNames.add("Words/JournalReferenceWordsStemmed.txt");
-		fileNames.add("Words/PeopleMediaWordsStemmed.txt");
-		fileNames.add("Words/RecreationalHobbiesWordsStemmed.txt");
-		fileNames.add("Words/TechnologySocialMediaWordsStemmed.txt");
-		fileNames.add("Words/VehicleTravelTransportationWordsStemmed.txt");
+		fileNames.add("Words/ArtsEntertainment.txt");
+		fileNames.add("Words/BeautyHealth.txt");
+		fileNames.add("Words/BusinessFinance.txt");
+		fileNames.add("Words/FoodDrink.txt");
+		fileNames.add("Words/HomeGarden.txt");
+		fileNames.add("Words/JournalReference.txt");
+		fileNames.add("Words/PeopleMedia.txt");
+		fileNames.add("Words/Recreational.txt");
+		fileNames.add("Words/Technology.txt");
+		fileNames.add("Words/TransportationTravel.txt");
 	}
 
 	public void gatherWebsites() {
