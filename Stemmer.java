@@ -227,6 +227,7 @@ public class Stemmer {
 	 */
 
 	private final void step1() {
+		
 		if (b[k] == 's') {
 			if (ends("sses"))
 				k -= 2;
@@ -238,7 +239,7 @@ public class Stemmer {
 		if (ends("eed")) {
 			if (m() > 0)
 				k--;
-		} else if ((ends("ed") || ends("ing")) && vowelinstem()) {
+		} else if ((ends("ed") && vowelinstem())) {
 			k = j;
 			if (ends("at"))
 				setto("ate");
@@ -545,8 +546,8 @@ public class Stemmer {
 		Stemmer s = new Stemmer();
 
 		try {
-			FileInputStream in = new FileInputStream("testWords.txt");
-			File out = new File("wordStems.txt");
+			FileInputStream in = new FileInputStream("IO/testWords.txt");
+			File out = new File("IO/wordStems.txt");
 			FileWriter writer = new FileWriter(out);
 
 			try {
