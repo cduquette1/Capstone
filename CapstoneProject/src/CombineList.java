@@ -8,13 +8,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OneListOutOfAll {
+public class CombineList {
 
 	private static ArrayList<String> fileNames;
 	private static HashMap<Integer, String> words;
 	private static int key;
 
-	public OneListOutOfAll() {
+	public CombineList() {
 
 
 		fileNames = new ArrayList<String>(); 
@@ -120,7 +120,7 @@ public class OneListOutOfAll {
 
 	public static void main(String args[]) {
 		
-		OneListOutOfAll oneList = new OneListOutOfAll();
+		CombineList oneList = new CombineList();
 		oneList.gatherWebsites();
 		oneList.Run("IO/allStemmedWords.txt");
 	}
