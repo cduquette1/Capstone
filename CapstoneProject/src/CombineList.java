@@ -11,26 +11,25 @@ import java.util.HashMap;
 public class CombineList {
 
 	private static ArrayList<String> fileNames;
-	private static HashMap<Integer, String> words;
+	private static HashMap<Integer, String> outPutItems;
 	private static int key;
 
 	public CombineList() {
 
+		fileNames = new ArrayList<String>();
 
-		fileNames = new ArrayList<String>(); 
-		
 		// hashmap to store values
-		words = new HashMap<>();
+		outPutItems = new HashMap<>();
 
 		// key will be number, index
 		key = 0;
 
 	}
 
-	public HashMap<Integer, String> getMap() {
-		return words;
+	public HashMap<Integer, String> getMapWords() {
+		return outPutItems;
 	}
-	
+
 	public void gatherStems() {
 		fileNames.add("Words/ArtsEntertainmentWordsStemmed.txt");
 		fileNames.add("Words/BeautyHealthWordsStemmed.txt");
@@ -43,7 +42,7 @@ public class CombineList {
 		fileNames.add("Words/TechnologySocialMediaWordsStemmed.txt");
 		fileNames.add("Words/VehicleTravelTransportationWordsStemmed.txt");
 	}
-	
+
 	public void gatherWebsites() {
 		fileNames.add("Websites/ArtsEntertainment.txt");
 		fileNames.add("Websites/BeautyHealth.txt");
@@ -55,22 +54,22 @@ public class CombineList {
 		fileNames.add("Websites/SportsRecreation.txt");
 		fileNames.add("Websites/TechnologySocialMedia.txt");
 		fileNames.add("Websites/VehiclesTravelTransportation.txt");
-		
+
 	}
-	
+
 	public ArrayList<String> getInputFiles() {
 		return fileNames;
 	}
-	
+
 	public boolean deleteFileInput(String fileName) {
-				return fileNames.remove(fileName);
+		return fileNames.remove(fileName);
 	}
-	
+
 	public void addFileInput(String fileName) {
 		fileNames.add(fileName);
 	}
-	
-	public void Run(String fileOutName) {
+
+	public void makeList(ArrayList<String> arrayList) {
 
 		// to go through individual files
 		for (int i = 0; i < fileNames.size(); i++) {
@@ -85,8 +84,8 @@ public class CombineList {
 
 				while (((line = reader.readLine()) != null)) {
 
-					if (!words.containsValue(line) && !line.equals("")) {
-						words.put(key, line);
+					if (!outPutItems.containsValue(line) && !line.equals("")) {
+						outPutItems.put(key, line);
 						key++;
 					}
 				}
@@ -97,6 +96,9 @@ public class CombineList {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public void writeFile(String fileOutName) {
 
 		/// writes all values of hash map words to output file
 		File out = new File(fileOutName);
@@ -106,8 +108,8 @@ public class CombineList {
 			FileWriter fileWriter = new FileWriter(out);
 			BufferedWriter writer = new BufferedWriter(fileWriter);
 
-			for (int j = 0; j < words.size(); j++) {
-				writer.write(words.get(j));
+			for (int j = 0; j < outPutItems.size(); j++) {
+				writer.write(outPutItems.get(j));
 				writer.write("\n");
 			}
 
@@ -119,9 +121,10 @@ public class CombineList {
 	}
 
 	public static void main(String args[]) {
-		
+
 		CombineList oneList = new CombineList();
-		oneList.gatherWebsites();
-		oneList.Run("IO/allStemmedWords.txt");
+		oneList.gatherStems();
+		oneList.makeList(oneList.getInputFiles());
+		oneList.writeFile("IO/allStems.txt");
 	}
 }
