@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 /*
  * Class that will create training vector, using stemmer and combine list
  * Carolyn Lynch
@@ -6,20 +13,69 @@
  */
 public class TraininingVector {
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws IOException {
 		
-		CombineList listToCompare = new CombineList();
-		listToCompare.gatherWebsites();
-		listToCompare.makeList(listToCompare.getInputFiles());
+	    String[] webTextFiles = {"Websites/ArtsEntertainmentWeb.txt", "Websites/BeautyHealthWeb.txt", "Websites/BusinessFinanceWeb.txt", 
+	            "Websites/FoodDrinkWeb.txt", "Websites/HomeGardenWeb.txt", "Websites/JournalReferenceWeb.txt", "Websites/PeopleMediaWeb.txt", 
+	            "Websites/RecreationalWeb.txt", "Websites/TechnologyWeb.txt", "Websites/TransportationTravelWeb.txt"
+	    };
+	    
+		CombineList wordlist = new CombineList();
+		wordlist.gatherStems();
+		wordlist.makeList(wordlist.getInputFiles());
+		ArrayList<String> wordBank = wordlist.getMapWords();
 		
-		/*
-		 * for(each website in file)
-		 * {
-		 * 	  save category to string
-		 * 	  make new vector row
-		 * 	  go through parsed html, cross checking for words in list (1 in column for included or 0 for not included)
-		 * 	  add category to row
-		 * }
-		 */
+		ArrayList<String[]> trainingData = new ArrayList<String[]>();
+		
+		//navigate to html file and parse then stem
+		
+		for(int i = 0; i < webTextFiles.length; i++) {
+		    FileInputStream fileIn = new FileInputStream(webTextFiles[i]);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileIn));
+            
+            String website = "";
+            while(((website = reader.readLine()) !=  null)) {
+                website = website.substring(8);
+                
+                if (website.contains("/")) {
+                    int index = website.indexOf("/");
+                    website = website.substring(0, index);
+                }
+                
+                Parser.parseHTML(website);
+  
+                Stemmer.stemHTML(website + ".txt");
+                
+                //create row for file
+                String [] row = new String[wordBank.size() + 1];
+                for(int j = 0; j < row.length; j++) {
+                    row[j] = "0";
+                }
+                
+                //compare words in stemmed html to word bank
+                FileInputStream stemFileIn = new FileInputStream("TextStemmed/" + website + ".txt");
+                BufferedReader stemReader = new BufferedReader(new InputStreamReader(stemFileIn));
+                
+                String tempWord = "";
+                while((tempWord = stemReader.readLine()) != null) {
+                    if(wordBank.indexOf(tempWord) != -1) {
+                        row[wordBank.indexOf(tempWord)] = "1";
+                    }
+                }
+                stemFileIn.close();
+                
+                //assigning category to row
+                String category = webTextFiles[i].substring(9);
+                int temp = category.indexOf("W");
+                category = category.substring(0, temp);
+                row[row.length - 1] = category;
+                
+                //adding row to training data
+                trainingData.add(row);
+            }
+            
+            fileIn.close();
+		}
+		
 	}
 }
