@@ -6,27 +6,22 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CombineList {
 
 	private static ArrayList<String> fileNames;
-	private static HashMap<Integer, String> outPutItems;
-	private static int key;
+	private static ArrayList<String> outPutItems;
 
 	public CombineList() {
 
 		fileNames = new ArrayList<String>();
 
 		// hashmap to store values
-		outPutItems = new HashMap<>();
-
-		// key will be number, index
-		key = 0;
+		outPutItems = new  ArrayList<String>();
 
 	}
 
-	public HashMap<Integer, String> getMapWords() {
+	public ArrayList<String> getMapWords() {
 		return outPutItems;
 	}
 
@@ -84,9 +79,8 @@ public class CombineList {
 
 				while (((line = reader.readLine()) != null)) {
 
-					if (!outPutItems.containsValue(line) && !line.equals("")) {
-						outPutItems.put(key, line);
-						key++;
+					if (!(outPutItems.contains(line)) && !line.equals("")) {
+						outPutItems.add(line);
 					}
 				}
 
@@ -125,6 +119,6 @@ public class CombineList {
 		CombineList oneList = new CombineList();
 		oneList.gatherStems();
 		oneList.makeList(oneList.getInputFiles());
-		oneList.writeFile("IO/allStems.txt");
+		//oneList.writeFile("IO/allStems.txt");
 	}
 }
