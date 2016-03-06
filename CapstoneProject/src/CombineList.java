@@ -10,13 +10,13 @@ import java.util.HashMap;
 
 public class CombineList {
 
-	private static ArrayList<String> fileNames;
+	private static ArrayList<String> fileInput;
 	private static HashMap<Integer, String> outPutItems;
 	private static int key;
 
 	public CombineList() {
 
-		fileNames = new ArrayList<String>();
+		fileInput = new ArrayList<String>();
 
 		// hashmap to store values
 		outPutItems = new HashMap<>();
@@ -31,51 +31,51 @@ public class CombineList {
 	}
 
 	public void gatherStems() {
-		fileNames.add("Words/ArtsEntertainment.txt");
-		fileNames.add("Words/BeautyHealth.txt");
-		fileNames.add("Words/BusinessFinance.txt");
-		fileNames.add("Words/FoodDrink.txt");
-		fileNames.add("Words/HomeGarden.txt");
-		fileNames.add("Words/JournalReference.txt");
-		fileNames.add("Words/PeopleMedia.txt");
-		fileNames.add("Words/Recreational.txt");
-		fileNames.add("Words/Technology.txt");
-		fileNames.add("Words/TransportationTravel.txt");
+		fileInput.add("Words/ArtsEntertainment.txt");
+		fileInput.add("Words/BeautyHealth.txt");
+		fileInput.add("Words/BusinessFinance.txt");
+		fileInput.add("Words/FoodDrink.txt");
+		fileInput.add("Words/HomeGarden.txt");
+		fileInput.add("Words/JournalReference.txt");
+		fileInput.add("Words/PeopleMedia.txt");
+		fileInput.add("Words/Recreational.txt");
+		fileInput.add("Words/Technology.txt");
+		fileInput.add("Words/TransportationTravel.txt");
 	}
 
 	public void gatherWebsites() {
-		fileNames.add("Websites/ArtsEntertainmentWeb.txt");
-		fileNames.add("Websites/BeautyHealthWeb.txt");
-		fileNames.add("Websites/BusinessFinanceWeb.txt");
-		fileNames.add("Websites/FoodDrinkWeb.txt");
-		fileNames.add("Websites/HomeGardenWeb.txt");
-		fileNames.add("Websites/JournalReferenceWeb.txt");
-		fileNames.add("Websites/PeopleMediaWeb.txt");
-		fileNames.add("Websites/RecreationWeb.txt");
-		fileNames.add("Websites/TechnologyWeb.txt");
-		fileNames.add("Websites/TransportationTravelWeb.txt");
+		fileInput.add("Websites/ArtsEntertainmentWeb.txt");
+		fileInput.add("Websites/BeautyHealthWeb.txt");
+		fileInput.add("Websites/BusinessFinanceWeb.txt");
+		fileInput.add("Websites/FoodDrinkWeb.txt");
+		fileInput.add("Websites/HomeGardenWeb.txt");
+		fileInput.add("Websites/JournalReferenceWeb.txt");
+		fileInput.add("Websites/PeopleMediaWeb.txt");
+		fileInput.add("Websites/RecreationalWeb.txt");
+		fileInput.add("Websites/TechnologyWeb.txt");
+		fileInput.add("Websites/TransportationTravelWeb.txt");
 
 	}
 
 	public ArrayList<String> getInputFiles() {
-		return fileNames;
+		return fileInput;
 	}
-
+	
 	public boolean deleteFileInput(String fileName) {
-		return fileNames.remove(fileName);
+		return fileInput.remove(fileName);
 	}
 
 	public void addFileInput(String fileName) {
-		fileNames.add(fileName);
+		fileInput.add(fileName);
 	}
 
 	public void makeList(ArrayList<String> arrayList) {
 
 		// to go through individual files
-		for (int i = 0; i < fileNames.size(); i++) {
+		for (int i = 0; i < fileInput.size(); i++) {
 			try {
 
-				FileInputStream fileIn = new FileInputStream(fileNames.get(i));
+				FileInputStream fileIn = new FileInputStream(fileInput.get(i));
 				BufferedReader reader = new BufferedReader(new InputStreamReader(fileIn));
 
 				// go in each file to make new list of all words, reduces
@@ -122,9 +122,5 @@ public class CombineList {
 
 	public static void main(String args[]) {
 
-		CombineList oneList = new CombineList();
-		oneList.gatherStems();
-		oneList.makeList(oneList.getInputFiles());
-		oneList.writeFile("IO/allStems.txt");
 	}
 }
