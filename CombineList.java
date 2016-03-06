@@ -44,16 +44,16 @@ public class CombineList {
 	}
 
 	public void gatherWebsites() {
-		fileNames.add("Websites/ArtsEntertainment.txt");
-		fileNames.add("Websites/BeautyHealth.txt");
-		fileNames.add("Websites/BusinessFinance.txt");
-		fileNames.add("Websites/FoodDrink.txt");
-		fileNames.add("Websites/HomeGarden.txt");
-		fileNames.add("Websites/JournalReference.txt");
-		fileNames.add("Websites/PeopleMedia.txt");
-		fileNames.add("Websites/SportsRecreation.txt");
-		fileNames.add("Websites/TechnologySocialMedia.txt");
-		fileNames.add("Websites/VehiclesTravelTransportation.txt");
+		fileNames.add("Websites/ArtsEntertainmentWeb.txt");
+		fileNames.add("Websites/BeautyHealthWeb.txt");
+		fileNames.add("Websites/BusinessFinanceWeb.txt");
+		fileNames.add("Websites/FoodDrinkWeb.txt");
+		fileNames.add("Websites/HomeGardenWeb.txt");
+		fileNames.add("Websites/JournalReferenceWeb.txt");
+		fileNames.add("Websites/PeopleMediaWeb.txt");
+		fileNames.add("Websites/RecreationWeb.txt");
+		fileNames.add("Websites/TechnologyWeb.txt");
+		fileNames.add("Websites/TransportationTravelWeb.txt");
 
 	}
 
