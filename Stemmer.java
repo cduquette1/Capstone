@@ -541,13 +541,13 @@ public class Stemmer {
 	 * 
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void stemHTML(String filename) {
 		char[] w = new char[501];
 		Stemmer s = new Stemmer();
 
 		try {
-			FileInputStream in = new FileInputStream("IO/testWords.txt");
-			File out = new File("IO/wordStems.txt");
+			FileInputStream in = new FileInputStream("Text/" +filename);
+			File out = new File("TextStemmed/" + filename);
 			FileWriter writer = new FileWriter(out);
 
 			try {
@@ -589,7 +589,6 @@ public class Stemmer {
 
 									writer.write(u + "\r\n");
 									writer.flush();
-									System.out.print(u);
 								}
 								break;
 							}
@@ -597,12 +596,11 @@ public class Stemmer {
 					}
 					if (ch < 0)
 						break;
-					System.out.print((char) ch);
 				}
 			} catch (IOException e) {
 				System.out.println("error reading ");
 			}
-		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
 			System.out.println("file not found");
 		}
 	}
