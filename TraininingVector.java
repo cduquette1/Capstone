@@ -1,8 +1,10 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /*
@@ -27,14 +29,15 @@ public class TraininingVector {
 		
 		ArrayList<String[]> trainingData = new ArrayList<String[]>();
 		
-		//navigate to html file and parse then stem
-		
+		//navigate to HTML file and parse then stem
 		for(int i = 0; i < webTextFiles.length; i++) {
 		    FileInputStream fileIn = new FileInputStream(webTextFiles[i]);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileIn));
             
             String website = "";
             while(((website = reader.readLine()) !=  null)) {
+                
+                //structure name
                 website = website.substring(8);
                 
                 if (website.contains("/")) {
@@ -42,8 +45,10 @@ public class TraininingVector {
                     website = website.substring(0, index);
                 }
                 
+                //parse all the HTML website
                 Parser.parseHTML(website);
   
+                //stems all website HTML
                 Stemmer.stemHTML(website + ".txt");
                 
                 //create row for file
@@ -52,7 +57,7 @@ public class TraininingVector {
                     row[j] = "0";
                 }
                 
-                //compare words in stemmed html to word bank
+                //compare words in stemmed HTML to word bank
                 FileInputStream stemFileIn = new FileInputStream("TextStemmed/" + website + ".txt");
                 BufferedReader stemReader = new BufferedReader(new InputStreamReader(stemFileIn));
                 
@@ -77,5 +82,33 @@ public class TraininingVector {
             fileIn.close();
 		}
 		
+		//Creating the text file that can be used by Weka
+		File outputFile = new File("TrainingData.txt");
+        PrintWriter writer = new PrintWriter(outputFile); 
+        
+        //Part 1: relation
+        writer.println("@relation classification");
+        writer.println();
+        
+        //Part 2: attribute
+        for(int i = 0; i < wordBank.size(); i++) {
+            writer.println("@attribute " + wordBank.get(i) + " real");
+        }
+        writer.println("@attribute category {ArtsEntertainment, BeautyHealthWeb, BusinessFinance, FoodDrink, " +
+        		"HomeGarden, JournalReference, PeopleMedia, Recreational, Technology, TransportationTravel}");
+        writer.println();
+        
+        //Part 3: data
+        writer.println("@data");
+        for(int i = 0; i < trainingData.size(); i++) {
+            String[] temp = trainingData.get(i);
+            for(int j = 0; j < wordBank.size(); j++) {
+                writer.print(temp[j] + ", ");
+            }
+            writer.print(temp[wordBank.size()]);
+            writer.println();
+        }
+        
+        writer.close();
 	}
 }
