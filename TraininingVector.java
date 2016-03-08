@@ -82,7 +82,7 @@ public class TraininingVector {
 		}
 		
 		//Creating the text file that can be used by Weka
-		File outputFile = new File("TrainingData.txt");
+		File outputFile = new File("TrainingData.arff");
         PrintWriter writer = new PrintWriter(outputFile); 
         
         //Part 1: relation
