@@ -11,12 +11,14 @@ public class WekaClassifier {
 	public static void main(String args[]) throws Exception {
 		
 		//train classifier
+	    TraininingVector.buildTrainVector();
 		BufferedReader breader = null;
 		breader = new BufferedReader(new FileReader("TrainingData.arff"));
 		Instances train = new Instances(breader);
 		train.setClassIndex(train.numAttributes() - 1);
 		
 		//apply input to classify
+		TestVector.buildTestVector();
 		breader = new BufferedReader(new FileReader("TestData.arff"));
 		Instances test = new Instances(breader);
 		test.setClassIndex(train.numAttributes()- 1 );
