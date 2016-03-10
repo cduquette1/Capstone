@@ -15,8 +15,7 @@ import java.util.ArrayList;
  */
 public class TestVector {
     
-    public static void main(String args[]) throws IOException {
-        
+    protected static void buildTestVector() throws IOException {
         String webTextFile = "Websites/UnknownWeb.txt";
         
         CombineList wordlist = new CombineList();
