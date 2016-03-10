@@ -546,6 +546,7 @@ public class Stemmer {
 		Stemmer s = new Stemmer();
 
 		try {
+			
 			FileInputStream in = new FileInputStream("Text/" +filename);
 			File out = new File("TextStemmed/" + filename);
 			FileWriter writer = new FileWriter(out);

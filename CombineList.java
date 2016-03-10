@@ -18,7 +18,6 @@ public class CombineList {
 
 		// hashmap to store values
 		outPutItems = new  ArrayList<String>();
-
 	}
 
 	public ArrayList<String> getMapWords() {
@@ -49,7 +48,7 @@ public class CombineList {
 		fileNames.add("Websites/RecreationWeb.txt");
 		fileNames.add("Websites/TechnologyWeb.txt");
 		fileNames.add("Websites/TransportationTravelWeb.txt");
-
+		fileNames.add("Websites/UnknownWeb.txt");
 	}
 
 	public ArrayList<String> getInputFiles() {
@@ -119,6 +118,6 @@ public class CombineList {
 		CombineList oneList = new CombineList();
 		oneList.gatherStems();
 		oneList.makeList(oneList.getInputFiles());
-		//oneList.writeFile("IO/allStems.txt");
+		oneList.writeFile("IO/allStems.txt");
 	}
 }
