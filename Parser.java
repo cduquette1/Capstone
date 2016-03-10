@@ -10,7 +10,7 @@ import org.jsoup.select.Elements;
  * Output: Text file containing word
  * 
  * @author Courtney Duquette
- * @version 2/11/2016
+ * @version 3/6/2016
  */
 
 public class Parser {
