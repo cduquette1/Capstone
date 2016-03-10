@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /*
  * Class that will create the test vector, using stemmer and combine list
+ * Creates vector with missing categories
  * Carolyn Lynch
  * Courtney Duquette
  * Capstone 2016
@@ -23,7 +24,7 @@ public class TestVector {
         wordlist.makeList(wordlist.getInputFiles());
         ArrayList<String> wordBank = wordlist.getMapWords();
         
-        ArrayList<String[]> trainingData = new ArrayList<String[]>();
+        ArrayList<String[]> testData = new ArrayList<String[]>();
         
         //navigate to HTML file and parse then stem
         FileInputStream fileIn = new FileInputStream(webTextFile);
@@ -69,7 +70,7 @@ public class TestVector {
             row[row.length - 1] = category;
             
             //adding row to training data
-            trainingData.add(row);
+            testData.add(row);
         }
         
         fileIn.close();
@@ -86,14 +87,14 @@ public class TestVector {
         for(int i = 0; i < wordBank.size(); i++) {
             writer.println("@attribute " + wordBank.get(i) + " real");
         }
-        writer.println("@attribute category {ArtsEntertainment, BeautyHealthWeb, BusinessFinance, FoodDrink, " +
+        writer.println("@attribute category {ArtsEntertainment, BeautyHealth, BusinessFinance, FoodDrink, " +
                 "HomeGarden, JournalReference, PeopleMedia, Recreational, Technology, TransportationTravel}");
         writer.println();
         
         //Part 3: data
         writer.println("@data");
-        for(int i = 0; i < trainingData.size(); i++) {
-            String[] temp = trainingData.get(i);
+        for(int i = 0; i < testData.size(); i++) {
+            String[] temp = testData.get(i);
             for(int j = 0; j < wordBank.size(); j++) {
                 writer.print(temp[j] + ", ");
             }

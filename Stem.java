@@ -106,10 +106,10 @@ public class Stem {
 
 	// for testing purposes
 	public static void main(String[] args) {
-		File inputFile = new File("testWords.txt");
+		/*File inputFile = new File("testWords.txt");
 		Stem stem = new Stem(inputFile);
 		stem.rootWordsFile();
-
+		 */
 	}
 
 }

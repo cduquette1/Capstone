@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /*
  * Class that will create training vector, using stemmer and combine list
+ * Runs the parser/stem for all files in websites
  * Carolyn Lynch
  * Courtney Duquette
  * Capstone 2016
@@ -93,7 +94,7 @@ public class TraininingVector {
         for(int i = 0; i < wordBank.size(); i++) {
             writer.println("@attribute " + wordBank.get(i) + " real");
         }
-        writer.println("@attribute category {ArtsEntertainment, BeautyHealthWeb, BusinessFinance, FoodDrink, " +
+        writer.println("@attribute category {ArtsEntertainment, BeautyHealth, BusinessFinance, FoodDrink, " +
         		"HomeGarden, JournalReference, PeopleMedia, Recreational, Technology, TransportationTravel}");
         writer.println();
         
