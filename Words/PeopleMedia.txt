@@ -1,12 +1,8 @@
-new
 channel
 weather
 traffic
 action
-sport
-health
 event
-team
 schedul
 
 
@@ -21,57 +17,38 @@ polit
 u.s.
 opinion
 
-
-entertain
-tech
-scienc
-health
-travel
 lifestyl
 forecast
 insid
 world
 trending
-
-
 breaking
 happening
 crime
 polit
-technolog
-travel
-big
 featur
-watch
 slideshow
 
-
-live
 style
-monei
-health
 coverag
 living
-top
 stori
 partner
 edit
+govern
+search 
 
 tv
 episod
 show
 schedul
-new
 connect
 broadcast
 cast
 captioning
-latest
-
 
 local
 intern
-monei
 editor
 quizz
 buzz
@@ -79,10 +56,8 @@ life
 celebr
 headlin
 
-
 forecast
 map
-photo
 podcast
 press
 popular
@@ -91,22 +66,29 @@ europ
 asia
 post
 
-
 educ
 magazin
-market
 follow
 sign
 viral
-food
+astrolog
 
-
-art
-galleri
 forum
 societi
 donat
 case
 caus
-involv
-donat
+involc
+lifestyl
+ 
+entertain
+comed
+politic
+crime
+science
+style
+horoscope
+election
+highlight
+highline
+video

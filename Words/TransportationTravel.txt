@@ -10,10 +10,8 @@ brows
 make
 
 
-new
 us
 research
-in
 motorcycl
 rv
 boat
@@ -63,7 +61,6 @@ brochur
 
 guid
 check
-out
 booking 
 packag
 wai
@@ -78,7 +75,6 @@ aadvantag
 financ
 trip
 flight
-on
 round
 destin
 vacat

@@ -10,7 +10,6 @@ brush
 advic
 
 howto
-bestseller
 training
 articl
 muscl
