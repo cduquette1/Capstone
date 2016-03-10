@@ -112,12 +112,4 @@ public class CombineList {
 			e.printStackTrace();
 		}
 	}
-
-	public static void main(String args[]) {
-
-		CombineList oneList = new CombineList();
-		oneList.gatherStems();
-		oneList.makeList(oneList.getInputFiles());
-		oneList.writeFile("IO/allStems.txt");
-	}
 }
