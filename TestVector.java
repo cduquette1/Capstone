@@ -16,7 +16,7 @@ public class TestVector {
     
     public static void main(String args[]) throws IOException {
         
-        String webTextFile = "Website/UnknownWeb.txt";
+        String webTextFile = "Websites/UnknownWeb.txt";
         
         CombineList wordlist = new CombineList();
         wordlist.gatherStems();
@@ -75,7 +75,7 @@ public class TestVector {
         fileIn.close();
         
         //Creating the text file that can be used by Weka
-        File outputFile = new File("TrainingData.arff");
+        File outputFile = new File("TestData.arff");
         PrintWriter writer = new PrintWriter(outputFile); 
         
         //Part 1: relation
