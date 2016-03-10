@@ -14,24 +14,23 @@ import java.util.ArrayList;
  * Capstone 2016
  */
 public class TraininingVector {
-
-	public static void main(String args[]) throws IOException {
-		
-	    String[] webTextFiles = {"Websites/ArtsEntertainmentWeb.txt", "Websites/BeautyHealthWeb.txt", "Websites/BusinessFinanceWeb.txt", 
-	            "Websites/FoodDrinkWeb.txt", "Websites/HomeGardenWeb.txt", "Websites/JournalReferenceWeb.txt", "Websites/PeopleMediaWeb.txt", 
-	            "Websites/RecreationalWeb.txt", "Websites/TechnologyWeb.txt", "Websites/TransportationTravelWeb.txt"
-	    };
-	    
-		CombineList wordlist = new CombineList();
-		wordlist.gatherStems();
-		wordlist.makeList(wordlist.getInputFiles());
-		ArrayList<String> wordBank = wordlist.getMapWords();
-		
-		ArrayList<String[]> trainingData = new ArrayList<String[]>();
-		
-		//navigate to HTML file and parse then stem
-		for(int i = 0; i < webTextFiles.length; i++) {
-		    FileInputStream fileIn = new FileInputStream(webTextFiles[i]);
+    
+    protected static void buildTrainVector() throws IOException {
+        String[] webTextFiles = {"Websites/ArtsEntertainmentWeb.txt", "Websites/BeautyHealthWeb.txt", "Websites/BusinessFinanceWeb.txt", 
+                "Websites/FoodDrinkWeb.txt", "Websites/HomeGardenWeb.txt", "Websites/JournalReferenceWeb.txt", "Websites/PeopleMediaWeb.txt", 
+                "Websites/RecreationalWeb.txt", "Websites/TechnologyWeb.txt", "Websites/TransportationTravelWeb.txt"
+        };
+        
+        CombineList wordlist = new CombineList();
+        wordlist.gatherStems();
+        wordlist.makeList(wordlist.getInputFiles());
+        ArrayList<String> wordBank = wordlist.getMapWords();
+        
+        ArrayList<String[]> trainingData = new ArrayList<String[]>();
+        
+        //navigate to HTML file and parse then stem
+        for(int i = 0; i < webTextFiles.length; i++) {
+            FileInputStream fileIn = new FileInputStream(webTextFiles[i]);
             BufferedReader reader = new BufferedReader(new InputStreamReader(fileIn));
             
             String website = "";
@@ -80,10 +79,10 @@ public class TraininingVector {
             }
             
             fileIn.close();
-		}
-		
-		//Creating the text file that can be used by Weka
-		File outputFile = new File("TrainingData.arff");
+        }
+        
+        //Creating the text file that can be used by Weka
+        File outputFile = new File("TrainingData.arff");
         PrintWriter writer = new PrintWriter(outputFile); 
         
         //Part 1: relation
@@ -95,7 +94,7 @@ public class TraininingVector {
             writer.println("@attribute " + wordBank.get(i) + " real");
         }
         writer.println("@attribute category {ArtsEntertainment, BeautyHealth, BusinessFinance, FoodDrink, " +
-        		"HomeGarden, JournalReference, PeopleMedia, Recreational, Technology, TransportationTravel}");
+                "HomeGarden, JournalReference, PeopleMedia, Recreational, Technology, TransportationTravel}");
         writer.println();
         
         //Part 3: data
@@ -110,5 +109,5 @@ public class TraininingVector {
         }
         
         writer.close();
-	}
+    }
 }
