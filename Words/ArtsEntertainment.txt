@@ -65,7 +65,6 @@ comic
 stori
 
 anim
-anim
 forum
 literaci
 comedi

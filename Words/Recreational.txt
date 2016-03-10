@@ -21,10 +21,6 @@ live
 leagu
 championship
 
-
-world
-intern
-nation
 fantasi
 schedul
 standing
@@ -42,7 +38,6 @@ draft
 youth
 parent
 volunt
-media
 scouting
 donat
 
@@ -55,14 +50,12 @@ rout
 trip
 gear
 partner
-photo
 school
 
 
 skill
 place
 peopl
-fun
 win
 plai
 certif
@@ -73,7 +66,6 @@ game
 
 entertain
 channel
-live
 commun
 support
 store
