@@ -15,10 +15,10 @@ import java.util.ArrayList;
  */
 public class TraininingVector {
     
-    protected static void buildTrainVector() throws IOException {
+    protected void buildTrainVector() throws IOException {
         String[] webTextFiles = {"Websites/ArtsEntertainmentWeb.txt", "Websites/BeautyHealthWeb.txt", "Websites/BusinessFinanceWeb.txt", 
-                "Websites/FoodDrinkWeb.txt", "Websites/HomeGardenWeb.txt", "Websites/JournalReferenceWeb.txt", "Websites/PeopleMediaWeb.txt", 
-                "Websites/RecreationalWeb.txt", "Websites/TechnologyWeb.txt", "Websites/TransportationTravelWeb.txt"
+                "Websites/FoodDrinkWeb.txt", "Websites/HomeHobbyWeb.txt", "Websites/JournalReferenceWeb.txt", "Websites/PeopleMediaWeb.txt", 
+                "Websites/GameSportWeb.txt", "Websites/TechnologyWeb.txt", "Websites/TransportationTravelWeb.txt"
         };
         
         CombineList wordlist = new CombineList();
@@ -94,7 +94,7 @@ public class TraininingVector {
             writer.println("@attribute " + wordBank.get(i) + " real");
         }
         writer.println("@attribute category {ArtsEntertainment, BeautyHealth, BusinessFinance, FoodDrink, " +
-                "HomeGarden, JournalReference, PeopleMedia, Recreational, Technology, TransportationTravel}");
+                "HomeHobby, JournalReference, PeopleMedia, GameSport, Technology, TransportationTravel}");
         writer.println();
         
         //Part 3: data
