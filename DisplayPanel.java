@@ -35,8 +35,11 @@ public class DisplayPanel extends JPanel {
         
         //format input
         siteName = siteName.toLowerCase();
-        checkFormat(siteName);
-        siteName = "https://" + siteName;
+        boolean flag = checkFormat(siteName);
+        if(!flag) {
+            return;
+        }
+        siteName = "https://www." + siteName;
         
         //Write to Unknown File
         writeToFile(siteName);
@@ -120,34 +123,26 @@ public class DisplayPanel extends JPanel {
         }
     }
 
-    private void checkFormat(String siteName) {
+    private boolean checkFormat(String siteName) {
         if(siteName.contains(" ")) {
             JOptionPane.showMessageDialog(this, "Blank Space in Input. Please Correct and Try Again.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         
         if(siteName.contains("..")) {
             JOptionPane.showMessageDialog(this, "Blank Space in Input. Please Correct and Try Again.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if(!siteName.contains("www.")) {
-            JOptionPane.showMessageDialog(this, "Missing \"www.\". Please Correct and Try Again.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        if(!siteName.contains(".com")){
-            JOptionPane.showMessageDialog(this, "Missing \".com\". Please Correct and Try Again.", "Input Error", JOptionPane.ERROR_MESSAGE);
-            return;
+            return false;
         }
         
         String[] symbols = {"!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "=", "`", "~", "{", "[", "]", "}", "|", ";", ":", "\"", "\'", "<", ">", ",", "?"};
         for(int i = 0; i < symbols.length; i++) {
             if(siteName.contains(symbols[i])) {
                 JOptionPane.showMessageDialog(this, "Invaild Symbol Present. Please Correct and Try Again.", "Input Error", JOptionPane.ERROR_MESSAGE);
-                return;
+                return false;
             }
         }
+        
+        return true;
     }
     
     private void writeToFile (String input){
