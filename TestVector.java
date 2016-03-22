@@ -15,9 +15,7 @@ import java.util.ArrayList;
  */
 public class TestVector {
     
-    protected static void buildTestVector() throws IOException {
-        String webTextFile = "Websites/UnknownWeb.txt";
-        
+    protected void buildTestVector(String webTextFile) throws IOException {
         CombineList wordlist = new CombineList();
         wordlist.gatherStems();
         wordlist.makeList(wordlist.getInputFiles());
@@ -87,7 +85,7 @@ public class TestVector {
             writer.println("@attribute " + wordBank.get(i) + " real");
         }
         writer.println("@attribute category {ArtsEntertainment, BeautyHealth, BusinessFinance, FoodDrink, " +
-                "HomeGarden, JournalReference, PeopleMedia, Recreational, Technology, TransportationTravel}");
+                "HomeHobby, JournalReference, PeopleMedia, GameSport, Technology, TransportationTravel}");
         writer.println();
         
         //Part 3: data
