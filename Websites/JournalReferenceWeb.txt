@@ -4,7 +4,6 @@ https://www.wordreference.com
 https://www.atlassian.com
 https://www.whitepages.com
 https://www.mappy.com
-https://www.petfinder.com
 https://www.ancestry.com
 https://www.indeed.com
 https://www.coursera.org
@@ -15,3 +14,16 @@ https://www.listal.com
 https://www.here.com
 https://www.metmuseum.org
 https://www.britannica.com
+https://www.ask.com
+https://www.answers.yahoo.com
+https://www.answersingenesis.org
+https://www.slader.com
+https://www.gale.com
+https://www.newworldencyclopedia.org
+https://www.encyclopedia.com
+https://www.infoplease.com
+https://www.iep.utm.edu
+https://www.brainyquote.com
+https://www.edx.org
+https://www.academicearth.org
+https://www.dictionary.com
