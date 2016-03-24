@@ -7,7 +7,7 @@ import java.io.*;
  * provided a character at time (by calling add()), or at once by calling one of
  * the various stem(something) methods.
  * 
- * http://tartarus.org/martin/PorterStemmer/java.txt for base implementation 
+ * http://tartarus.org/martin/PorterStemmer/java.txt for base implementation
  * 
  * 2/28/16
  */
@@ -227,7 +227,7 @@ public class Stemmer {
 	 */
 
 	private final void step1() {
-		
+
 		if (b[k] == 's') {
 			if (ends("sses"))
 				k -= 2;
@@ -546,8 +546,8 @@ public class Stemmer {
 		Stemmer s = new Stemmer();
 
 		try {
-			
-			FileInputStream in = new FileInputStream("Text/" +filename);
+
+			FileInputStream in = new FileInputStream("Text/" + filename);
 			File out = new File("TextStemmed/" + filename);
 			FileWriter writer = new FileWriter(out);
 

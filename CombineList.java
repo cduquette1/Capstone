@@ -99,7 +99,7 @@ public class CombineList {
 			writer.newLine();
 			writer.write(webSite);
 			writer.close();
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
