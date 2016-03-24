@@ -34,6 +34,7 @@ public class DemoInterface extends JFrame{
         button.add(classify);
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
         setSize(400, 125);
         setVisible(true);
     }

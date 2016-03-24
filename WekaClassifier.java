@@ -2,10 +2,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 
-import weka.classifiers.bayes.NaiveBayes;
-import weka.classifiers.trees.J48;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
 
@@ -58,7 +55,7 @@ public class WekaClassifier {
     }
 
 	public static void main(String args[]) throws Exception {
-		/*
+		
 		//train classifier
 	    TraininingVector training = new TraininingVector();
 	    training.buildTrainVector();
@@ -94,6 +91,6 @@ public class WekaClassifier {
 		
 		
 		writer.close();
-		*/
+		
 	}
 }

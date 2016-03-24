@@ -23,7 +23,7 @@ public class Parser {
         PrintWriter writer = new PrintWriter(outputFile); 
         
         Document doc = Jsoup.parse(file, null);
-    
+        
         Elements elements = doc.select("title, li");
 
         for(Element e : elements) {

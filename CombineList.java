@@ -16,11 +16,11 @@ public class CombineList {
 
 		fileNames = new ArrayList<String>();
 
-		// hashmap to store values
-		outPutItems = new  ArrayList<String>();
+		// list to store values
+		outPutItems = new ArrayList<String>();
 	}
 
-	public ArrayList<String> getMapWords() {
+	public ArrayList<String> getListContents() {
 		return outPutItems;
 	}
 
@@ -29,10 +29,10 @@ public class CombineList {
 		fileNames.add("Words/BeautyHealth.txt");
 		fileNames.add("Words/BusinessFinance.txt");
 		fileNames.add("Words/FoodDrink.txt");
-		fileNames.add("Words/HomeGarden.txt");
+		fileNames.add("Words/HomeHobby.txt");
 		fileNames.add("Words/JournalReference.txt");
 		fileNames.add("Words/PeopleMedia.txt");
-		fileNames.add("Words/Recreational.txt");
+		fileNames.add("Words/GameSport.txt");
 		fileNames.add("Words/Technology.txt");
 		fileNames.add("Words/TransportationTravel.txt");
 	}
@@ -42,10 +42,10 @@ public class CombineList {
 		fileNames.add("Websites/BeautyHealthWeb.txt");
 		fileNames.add("Websites/BusinessFinanceWeb.txt");
 		fileNames.add("Websites/FoodDrinkWeb.txt");
-		fileNames.add("Websites/HomeGardenWeb.txt");
+		fileNames.add("Websites/HomeHobbyWeb.txt");
 		fileNames.add("Websites/JournalReferenceWeb.txt");
 		fileNames.add("Websites/PeopleMediaWeb.txt");
-		fileNames.add("Websites/RecreationWeb.txt");
+		fileNames.add("Websites/GameSportWeb.txt");
 		fileNames.add("Websites/TechnologyWeb.txt");
 		fileNames.add("Websites/TransportationTravelWeb.txt");
 		fileNames.add("Websites/UnknownWeb.txt");
@@ -89,6 +89,21 @@ public class CombineList {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public static void addToFile(String fileName, String webSite) {
+
+		try {
+			FileWriter fileWriter = new FileWriter(fileName, true);
+			BufferedWriter writer = new BufferedWriter(fileWriter);
+			writer.newLine();
+			writer.write(webSite);
+			writer.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	public void writeFile(String fileOutName) {

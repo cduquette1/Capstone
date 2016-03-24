@@ -24,7 +24,7 @@ public class TraininingVector {
         CombineList wordlist = new CombineList();
         wordlist.gatherStems();
         wordlist.makeList(wordlist.getInputFiles());
-        ArrayList<String> wordBank = wordlist.getMapWords();
+        ArrayList<String> wordBank = wordlist.getListContents();
         
         ArrayList<String[]> trainingData = new ArrayList<String[]>();
         

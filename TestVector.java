@@ -18,8 +18,9 @@ public class TestVector {
     protected void buildTestVector(String webTextFile) throws IOException {
         CombineList wordlist = new CombineList();
         wordlist.gatherStems();
+        
         wordlist.makeList(wordlist.getInputFiles());
-        ArrayList<String> wordBank = wordlist.getMapWords();
+        ArrayList<String> wordBank = wordlist.getListContents();
         
         ArrayList<String[]> testData = new ArrayList<String[]>();
         
