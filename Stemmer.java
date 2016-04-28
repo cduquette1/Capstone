@@ -1,18 +1,26 @@
 import java.io.*;
 
-/**
+import javax.swing.JOptionPane;
+
+/*
+ * Courtney Duquette
+ * Carolyn Lynch
+ * 4/27/2016
+ * Web Classification for Bot Detection
+ * 
  * Stemmer, implementing the Porter Stemming Algorithm
  *
  * The Stemmer class transforms a word into its root form. The input word can be
  * provided a character at time (by calling add()), or at once by calling one of
  * the various stem(something) methods.
  * 
- * http://tartarus.org/martin/PorterStemmer/java.txt for base implementation
+ * Taken from: http://tartarus.org/martin/PorterStemmer/java.txt for base implementation
  * 
- * 2/28/16
- */
+ * Capstone Project
+*/
 
 public class Stemmer {
+	
 	private char[] b;
 	private int i, /* offset into b */
 			i_end, /* offset to end of stemmed word */
@@ -602,7 +610,7 @@ public class Stemmer {
 				System.out.println("error reading ");
 			}
 		} catch (IOException e) {
-			System.out.println("file not found");
+			JOptionPane.showMessageDialog(null, "Website failed to download due to Wget. Please try another.");
 		}
 	}
 }

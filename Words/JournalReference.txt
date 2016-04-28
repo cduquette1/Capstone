@@ -3,6 +3,7 @@ encylopedia
 dictionari
 cite
 bibliographi 
+wikipedia
 translat
 languag
 word

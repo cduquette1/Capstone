@@ -7,6 +7,13 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+/*
+ * Courtney Duquette
+ * Carolyn Lynch
+ * 4/27/2016
+ * Web Classification for Bot Detection
+ * Capstone Project
+*/
 public class CombineList {
 
 	private static ArrayList<String> fileNames;
@@ -14,6 +21,7 @@ public class CombineList {
 
 	public CombineList() {
 
+		// list to store fileNames to be downloaded
 		fileNames = new ArrayList<String>();
 
 		// list to store values

@@ -1,8 +1,8 @@
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,9 +12,22 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/*
+ * Courtney Duquette
+ * Carolyn Lynch
+ * 4/27/2016
+ * Web Classification for Bot Detection
+ * Capstone Project
+*/
+
+//Enum used instead of String literals
+enum Category { ArtsEntertainment, BeautyHealth, BusinessFinance, FoodDrink, GameSport, 
+	HomeHobby, JournalReference, PeopleMedia, Technology, TransportationTravel, About }
+
 @SuppressWarnings("serial")
 public class DemoInterface extends JFrame {
 
+	//Constructor that builds GUI windows
 	public DemoInterface() {
 		super("Web Classifer");
 		setLayout(new BorderLayout());
@@ -32,7 +45,9 @@ public class DemoInterface extends JFrame {
 		classify.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				setCursor(new Cursor(Cursor.WAIT_CURSOR));
 				display.classify();
+				setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
 		button.add(classify);
@@ -47,154 +62,70 @@ public class DemoInterface extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         
-        //About Menu
-        JMenu aboutMenu = new JMenu("About");
-        JMenuItem about = aboutMenu.add("About");
-        
-        //Category Menu
+        //Submenu with about
         JMenu descriptionMenu = new JMenu("Description of Categories");
-        JMenuItem arts = descriptionMenu.add("ArtsEntertainment");
-        JMenuItem health = descriptionMenu.add("BeautyHealth");
-        JMenuItem busi = descriptionMenu.add("BusinessFinance");
-        JMenuItem food = descriptionMenu.add("FoodDrink");
-        JMenuItem home = descriptionMenu.add("HomeHobby");
-        JMenuItem ref = descriptionMenu.add("JournalReference");
-        JMenuItem media = descriptionMenu.add("PeopleMedia");
-        JMenuItem sport = descriptionMenu.add("GameSport");
-        JMenuItem tech = descriptionMenu.add("Technology");
-        JMenuItem travel = descriptionMenu.add("TransportationTravel");
-        
+    	
+        //Creates a menuItem for each category and add action listener accordingly
+        for(Category g : Category.values()) {
+        	JMenuItem newItem = descriptionMenu.add(g.toString());
+        	
+        	newItem.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					displayDialog(g);
+				}
+        	});
+        }
+
         //Adding everything to menu bar
         menuBar.add(descriptionMenu);
         menuBar.add(Box.createHorizontalGlue());
-        menuBar.add(aboutMenu);
-        
-        about.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("About");
-            } 
-        });
-        
-        arts.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("ArtsEntertainment");
-            }
-        });
-        
-        health.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("BeautyHealth");
-            }
-        });
-        
-        busi.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("BusinessFinance");
-            }
-            
-        });
-        
-        food.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("FoodDrink");
-            }
-        });
-        
-        home.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("HomeHobby");
-            }
-        });
-        
-        ref.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("JournalReference");
-            }
-        });
-        
-        media.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("PeopleMedia");
-            }
-            
-        });
-        
-        sport.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("GameSport");
-            }
-            
-        });
-        
-        tech.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("Technology");
-            }
-        });
-        
-        travel.addActionListener( new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent arg0) {
-                displayDialog("TransportationTravel");
-            }
-        });
-        
-    }
-    
-    protected void displayDialog(String cat) {
+   }
+	
+	//Displays information about each category
+    protected void displayDialog(Category cat) {
         String message = "";
         switch (cat) {
-            case "ArtsEntertainment":   
+            case ArtsEntertainment:   
                 message = "Videos, Books, Celebrity, TV, \nand Movie Websites";
                 break;
-            case "BeautyHealth":        
+            case BeautyHealth:        
                 message = "Fitness, Health, Make-up, \nand Fashion Websites";
                 break;
-            case "BusinessFinance":     
+            case BusinessFinance:     
                 message = "Business, Banking, Stock Market, \nand Financial Websites";
                 break;
-            case "FoodDrink":           
+            case FoodDrink:           
                 message = "Recipes, Restraunts, Beer, \nand Food Blog Websites";
                 break;
-            case "HomeHobby":           
+            case HomeHobby:           
                 message = "Home Searching, Home Decor Ideas, \nand Shopping Websites";
                 break;
-            case "JournalReference":    
+            case JournalReference:    
                 message = "Encyclopedia, Wiki, Dictionary, \nand Journal Websites";
                 break;
-            case "PeopleMedia":         
+            case PeopleMedia:         
                 message = "News, College, Government, \nand Social Media Websites";
                 break;
-            case "GameSport":           
+            case GameSport:          
                 message = "Online Games, Betting, Sports, \nand Recreation Websites";
                 break;
-            case "Technology":          
+            case Technology:          
                 message = "Computer Information, Computer Brands, \nand Science Websites";
                 break;
-            case "TransportationTravel":
+            case TransportationTravel:
                 message = "Car Company, Hotel, Airplanes, \nand Public Transportation Websites";
                 break;
             default: 
                 message = "CPSC 498 Capstone: Web Classifier \nCourtney Duquette & Carolyn Lynch \nSpring 2016";
                 break; 
         }
-        JOptionPane.showMessageDialog(this, message, cat, JOptionPane.INFORMATION_MESSAGE);
-        
+        JOptionPane.showMessageDialog(this, message, cat.toString(), JOptionPane.INFORMATION_MESSAGE);
     }
 
+    //Point that program runs from
 	public static void main(String[] args) {
 		new DemoInterface();
-
 	}
-
 }

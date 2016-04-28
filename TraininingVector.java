@@ -7,14 +7,20 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 /*
+ * Courtney Duquette
+ * Carolyn Lynch
+ * 4/27/2016
+ * Web Classification for Bot Detection
+ * 
  * Class that will create training vector, using stemmer and combine list
  * Runs the parser/stem for all files in websites
- * Carolyn Lynch
- * Courtney Duquette
- * Capstone 2016
- */
+ * 
+ * Capstone Project
+*/
+
 public class TraininingVector {
 
+	//Builds training vector with features and words
 	protected void buildTrainVector() throws IOException {
 		String[] webTextFiles = { "Websites/ArtsEntertainmentWeb.txt", "Websites/BeautyHealthWeb.txt",
 				"Websites/BusinessFinanceWeb.txt", "Websites/FoodDrinkWeb.txt", "Websites/HomeHobbyWeb.txt",
@@ -28,7 +34,7 @@ public class TraininingVector {
 
 		ArrayList<String[]> trainingData = new ArrayList<String[]>();
 
-		// navigate to HTML file and parse then stem
+		//Navigate to HTML file and parse then stem
 		for (int i = 0; i < webTextFiles.length; i++) {
 			FileInputStream fileIn = new FileInputStream(webTextFiles[i]);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(fileIn));
@@ -36,7 +42,7 @@ public class TraininingVector {
 			String website = "";
 			while (((website = reader.readLine()) != null)) {
 
-				// structure name
+				//Structure name
 				website = website.substring(8);
 
 				if (website.contains("/")) {
@@ -44,19 +50,19 @@ public class TraininingVector {
 					website = website.substring(0, index);
 				}
 
-				// parse all the HTML website
+				//Parse all the HTML website
 				Parser.parseHTML(website);
 
-				// stems all website HTML
+				//Stems all website HTML
 				Stemmer.stemHTML(website + ".txt");
 
-				// create row for file
+				//Create row for file
 				String[] row = new String[wordBank.size() + 1];
 				for (int j = 0; j < row.length; j++) {
 					row[j] = "0";
 				}
 
-				// compare words in stemmed HTML to word bank
+				//Compare words in stemmed HTML to word bank
 				FileInputStream stemFileIn = new FileInputStream("TextStemmed/" + website + ".txt");
 				BufferedReader stemReader = new BufferedReader(new InputStreamReader(stemFileIn));
 
@@ -68,28 +74,28 @@ public class TraininingVector {
 				}
 				stemFileIn.close();
 
-				// assigning category to row
+				//Assigning category to row
 				String category = webTextFiles[i].substring(9);
 				int temp = category.indexOf("W");
 				category = category.substring(0, temp);
 				row[row.length - 1] = category;
 
-				// adding row to training data
+				//Adding row to training data
 				trainingData.add(row);
 			}
 
 			fileIn.close();
 		}
 
-		// Creating the text file that can be used by Weka
+		//Creating the text file that can be used by Weka
 		File outputFile = new File("TrainingData.arff");
 		PrintWriter writer = new PrintWriter(outputFile);
 
-		// Part 1: relation
+		//Part 1: relation
 		writer.println("@relation classification");
 		writer.println();
 
-		// Part 2: attribute
+		//Part 2: attribute
 		for (int i = 0; i < wordBank.size(); i++) {
 			writer.println("@attribute " + wordBank.get(i) + " real");
 		}
@@ -97,7 +103,7 @@ public class TraininingVector {
 				+ "HomeHobby, JournalReference, PeopleMedia, GameSport, Technology, TransportationTravel}");
 		writer.println();
 
-		// Part 3: data
+		//Part 3: data
 		writer.println("@data");
 		for (int i = 0; i < trainingData.size(); i++) {
 			String[] temp = trainingData.get(i);
