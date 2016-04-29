@@ -2,7 +2,11 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Random;
+
 import javax.swing.JOptionPane;
+
+import weka.classifiers.Evaluation;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
 
@@ -22,9 +26,8 @@ public class WekaClassifier {
 	//Boolean to account for lag with interaction of Wget/Weka
 	private boolean websiteDownloaded = false;
 	
-	public String runClassifier(boolean trained) {
+	public String runClassifier(boolean trained, String websiteFile) {
 		try {
-			
 			//Train classifier
 			if (!trained) {
 				
@@ -40,7 +43,7 @@ public class WekaClassifier {
 
 			//Apply input to classify
 			TestVector testing = new TestVector();
-			testing.buildTestVector("Websites/DemoUnknownWeb.txt");
+			testing.buildTestVector("Websites/" + websiteFile);
 			breader = new BufferedReader(new FileReader("TestData.arff"));
 			Instances test = new Instances(breader);
 			test.setClassIndex(train.numAttributes() - 1);
@@ -52,8 +55,11 @@ public class WekaClassifier {
 			tree.buildClassifier(train);
 			Instances labeled = new Instances(test);
 
-			//Creat outputFile
+			//Create outputFile
 			runOutputFile(labeled, tree, test);
+			
+			//Create evaluation
+			runCrossValidation(train, tree);
 			
 			//Create output of single instance
 			double variableName = tree.classifyInstance(test.firstInstance());
@@ -74,29 +80,6 @@ public class WekaClassifier {
 
 	public void runOutputFile(Instances labeled, RandomForest tree, Instances test) throws Exception {
 
-//		// creates training vector and then classifies test data
-//		// train classifier
-//		TraininingVector training = new TraininingVector();
-//		training.buildTrainVector();
-//		BufferedReader breader = null;
-//		breader = new BufferedReader(new FileReader("TrainingData.arff"));
-//		Instances train = new Instances(breader);
-//		train.setClassIndex(train.numAttributes() - 1);
-//
-//		// apply input to classify
-//		TestVector testing = new TestVector();
-//		testing.buildTestVector("Websites/UnknownWeb.txt");
-//		breader = new BufferedReader(new FileReader("TestData.arff"));
-//		Instances test = new Instances(breader);
-//		test.setClassIndex(train.numAttributes() - 1);
-//
-//		breader.close();
-//
-//		//Destinates which classification to use
-//		RandomForest tree = new RandomForest();
-//		tree.buildClassifier(train);
-//		Instances labeled = new Instances(test);
-
 		for (int i = 0; i < test.numInstances(); i++) {
 			double variableName = tree.classifyInstance(test.instance(i));
 			labeled.instance(i).setClassValue(variableName);
@@ -107,5 +90,20 @@ public class WekaClassifier {
 		writer.write(labeled.toString());
 		writer.close();
 
+	}
+	
+	public void runCrossValidation(Instances train, RandomForest tree) throws Exception {
+	    
+	    Evaluation eval = new Evaluation(train);
+	    Random rand = new Random(1);
+	    int folds = 10;
+	    eval.crossValidateModel(tree, train, folds, rand);
+	    System.out.println(eval.toClassDetailsString());
+	}
+	
+	public static void main (String[] args) {
+	    
+	    WekaClassifier sample = new WekaClassifier();
+	    sample.runClassifier(false, "UnknownWeb.txt");
 	}
 }
